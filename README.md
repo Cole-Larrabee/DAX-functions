@@ -6,16 +6,16 @@ While generally ideal to aggregate/group data in 'M', sometimes this is not poss
 This will not be shown when inside of the query editor. The solution to this is to create a DAX table through the 'SUMMARIZE' function. 
 
 
-Aggregated Table = SUMMARIZE(table,field1,field2,field3,fieldX,"Aggregate1title",COUNT(field_n),"Aggregate2title",
-MIN(field_n1),"Aggregate3title",MAX(field_n2)) 
+`Aggregated Table = SUMMARIZE(table,field1,field2,field3,fieldX,"Aggregate1title",COUNT(field_n),"Aggregate2title",
+MIN(field_n1),"Aggregate3title",MAX(field_n2))`
 
-Cumulative Sum = CALCULATE(SUM(field),FILTER(ALL(table),id_field=EARLIER(id_field) 
-&& date_field = EARLIER(date_field)))
+`Cumulative Sum = CALCULATE(SUM(field),FILTER(ALL(table),id_field=EARLIER(id_field) 
+&& date_field = EARLIER(date_field)))`
 
 This function will take the whole table context into account using the 'ALL' function.
 The 'EARLIER' function compares the current row vs. previous rows matching the conditions.
 
-Dynamic Title = "fill text here" & CONCATENATEX(values(field),field,", ")
+`Dynamic Title = "fill text here" & CONCATENATEX(values(field),field,", ")`
 
 This function will show all currently selected values for the given field based on the filters applied. 
 Replace 'fill text here' with static text.
@@ -33,7 +33,7 @@ Measure (13 Days Back - 8 Days Back) = CALCULATE(field,DATESBETWEEN(date_field, 
 Using these multiple measures, we can now evaluate the deviation week to week (or whatever date range is set)
 Measure (7 Days Back - Max Date)/Measure (13 Days Back - 8 Days Back) = Change From Last Week
 
-Non-Equi Aggregation= CALCULATE(            
+`Non-Equi Aggregation= CALCULATE(            
         SUMX(Base_Table,Field_to_Sum),
         FILTER(
             Base_Table,
@@ -42,7 +42,7 @@ Non-Equi Aggregation= CALCULATE(
             && StartDate_Second_Table = StartDate_Base_Table
             && StartTimeField_Second_Table < StartTimeField_Base_Table
         )
-        )
+        )`
 
 This function will sum up all the values that follow the conditions:
  -Person/Unique ID in table 1 = Person/Unique ID in table 2
